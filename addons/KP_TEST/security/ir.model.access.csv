@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_kp_test_item_user,kp.test.item,model_kp_test_item,,1,1,1,1

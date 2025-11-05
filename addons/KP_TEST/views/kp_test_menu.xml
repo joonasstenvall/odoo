@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <menuitem id="menu_kp_test_root" name="KP Test" sequence="10" action="action_kp_test_items"/>
+        <menuitem id="menu_kp_test_items" name="Items" parent="menu_kp_test_root" action="action_kp_test_items" sequence="10"/>
+    </data>
+</odoo>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!-- Generic service product to use when selling KP Items -->
+    <record id="product_kp_generic_template" model="product.template">
+        <field name="name">KP Item</field>
+        <field name="type">service</field>
+        <field name="invoice_policy">order</field>
+        <field name="list_price">0.0</field>
+        <field name="sale_ok">1</field>
+        <field name="purchase_ok">0</field>
+    </record>
+</odoo>

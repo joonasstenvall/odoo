@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <!-- Add KP BoM tab to product.template form -->
+        <record id="product_template_form_inherit_kp_bom" model="ir.ui.view">
+            <field name="name">product.template.form.kp.bom</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//form//notebook" position="inside">
+                    <page string="KP BoM" name="kp_bom">
+                        <group>
+                            <!-- No need to pass default_product_tmpl_id: the O2M inverse is auto-set by Odoo -->
+                            <field name="kp_bom_line_ids">
+                                <list editable="bottom">
+                                    <field name="sequence" widget="handle"/>
+                                    <field name="kp_item_id"/>
+                                    <field name="quantity"/>
+                                    <field name="note" optional="hide"/>
+                                </list>
+                                <form>
+                                    <group>
+                                        <field name="sequence"/>
+                                        <field name="kp_item_id"/>
+                                        <field name="quantity"/>
+                                        <field name="note"/>
+                                    </group>
+                                </form>
+                            </field>
+                        </group>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

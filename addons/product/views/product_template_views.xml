@@ -6,7 +6,7 @@
         <field name="priority">10</field>
         <field name="arch" type="xml">
             <list string="Product" multi_edit="1" sample="1">
-                <field name="product_variant_count" column_invisible="True"/>
+                <field name="product_variant_count" column_invisible="False"/>
                 <field name="sale_ok" column_invisible="True"/>
                 <field name="currency_id" column_invisible="True"/>
                 <field name="cost_currency_id" column_invisible="True"/>

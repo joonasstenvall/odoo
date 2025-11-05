@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <menuitem id="menu_kp_test_root" name="KP Test" sequence="10" action="action_kp_test_items"/>
+        <menuitem id="menu_kp_test_items" name="Items" parent="menu_kp_test_root" sequence="10"/>
+        <menuitem id="menu_kp_test_items_all" name="All" parent="menu_kp_test_items" action="action_kp_test_items_all" sequence="10"/>
+        <menuitem id="menu_kp_test_items_active" name="Active" parent="menu_kp_test_items" action="action_kp_test_items_active" sequence="20"/>
+        <menuitem id="menu_kp_test_items_inactive" name="Inactive" parent="menu_kp_test_items" action="action_kp_test_items_inactive" sequence="30"/>
+    </data>
+</odoo>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <!-- Add KP Item to the Sales Order lines -->
+        <record id="view_order_form_inherit_kp_test_sale" model="ir.ui.view">
+            <field name="name">sale.order.form.kp.test.sale</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <!-- Insert KP Item column into the order_line inline list without relying on a specific anchor -->
+                <xpath expr="//field[@name='order_line']/list" position="inside">
+                    <field name="kp_item_id" optional="show" domain="[('is_active','=',True)]"/>
+                </xpath>
+            </field>
+        </record>
+
+        <!-- Add KP Item to the readonly order line form (popup) -->
+        <record id="sale_order_line_view_form_readonly_inherit_kp_test_sale" model="ir.ui.view">
+            <field name="name">sale.order.line.form.readonly.kp.test.sale</field>
+            <field name="model">sale.order.line</field>
+            <field name="inherit_id" ref="sale.sale_order_line_view_form_readonly"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='product_id']" position="before">
+                    <field name="kp_item_id" domain="[('is_active','=',True)]"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>
