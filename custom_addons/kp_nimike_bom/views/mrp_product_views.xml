@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Add debug field to show category type on product form -->
+        <record id="product_template_form_view_show_category_type" model="ir.ui.view">
+            <field name="name">product.template.form.show.category.type</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_only_form_view"/>
+            <field name="arch" type="xml">
+                <field name="categ_id" position="after">
+                    <field name="kp_categ_type" string="[DEBUG] Category Type" class="text-danger" readonly="1"/>
+                </field>
+            </field>
+        </record>
+
+        <!-- Show BoM button for products with category NIMIKE -->
+        <record id="product_template_form_view_bom_button_inherit_kp" model="ir.ui.view">
+            <field name="name">product.template.procurement.kp.nimike.bom.button</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="mrp.product_template_form_view_bom_button"/>
+            <field name="arch" type="xml">
+                <xpath expr="//button[@name='%(mrp.template_open_bom)d']" position="replace">
+                    <button class="oe_stat_button" name="%(mrp.template_open_bom)d" type="action"
+                        groups="mrp.group_mrp_user"
+                        invisible="kp_categ_type != 'NIMIKE'" icon="fa-flask">
+                        <field string="Bill of Materials" name="bom_count" widget="statinfo" />
+                    </button>
+                </xpath>
+                <xpath expr="//button[@name='action_used_in_bom']" position="replace">
+                    <button class="oe_stat_button" name="action_used_in_bom" type="object"
+                        groups="mrp.group_mrp_user"
+                        invisible="kp_categ_type != 'NIMIKE' or used_in_bom_count == 0" icon="fa-level-up">
+                        <field string="Used In" name="used_in_bom_count" widget="statinfo" />
+                    </button>
+                </xpath>
+                <xpath expr="//button[@name='action_view_mos']" position="replace">
+                    <button class="oe_stat_button" name="action_view_mos" type="object"
+                        groups="mrp.group_mrp_user"
+                        invisible="kp_categ_type != 'NIMIKE' or bom_count == 0 or mrp_product_qty == 0" icon="fa-list-alt" help="Manufactured in the last 365 days">
+                        <div class="o_field_widget o_stat_info">
+                            <span class="o_stat_value d-flex gap-1">
+                                <field name="mrp_product_qty" widget="statinfo" nolabel="1" class="mr4"/>
+                                <field name="uom_name" groups="uom.group_uom"/>
+                            </span>
+                            <span class="o_stat_text">Manufactured</span>
+                        </div>
+                    </button>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>
